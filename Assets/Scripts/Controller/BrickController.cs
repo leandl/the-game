@@ -5,10 +5,14 @@ using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     private BrickModel __brickModel;
+
+    private LevelModel __levelModel;
     // Start is called before the first frame update
     void Start()
     {
         __brickModel = GetComponent<BrickModel>();
+        GameObject[] levelInfoGameObjects = GameObject.FindGameObjectsWithTag("level");
+        __levelModel = levelInfoGameObjects[0].GetComponent<LevelModel>();
     }
 
     public void TakeDamage(float damage)
@@ -17,6 +21,7 @@ public class BrickController : MonoBehaviour
         if (__brickModel.Life <= 0)
         {
             Destroy(gameObject);
+            __levelModel.BrickAmount -= 1;
         }
     }
 }
