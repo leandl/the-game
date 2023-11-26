@@ -18,4 +18,20 @@ public class PlayerView : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         __playerController.Move(h);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            __playerController.BlockedMove();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            __playerController.AllowedMove();
+        }
+    }
 }
