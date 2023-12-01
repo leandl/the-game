@@ -5,14 +5,20 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     private BallModel __ballModel;
+    private AudioSource __audioComponent;
     private Rigidbody2D __rigidbodyBall;
     // Start is called before the first frame update
     void Start()
     {
         __ballModel = GetComponent<BallModel>();
         __rigidbodyBall = GetComponent<Rigidbody2D>();
-
+        __audioComponent = GetComponent<AudioSource>();
         __rigidbodyBall.velocity = Vector2.up * __ballModel.Speed;
+    }
+
+    public void playAudio()
+    {
+      __audioComponent.Play();
     }
 
     public void PerfectAngleReflect(Collision2D other)

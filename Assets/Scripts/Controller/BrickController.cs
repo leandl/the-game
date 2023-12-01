@@ -22,6 +22,7 @@ public class BrickController : MonoBehaviour
         {
             Destroy(gameObject);
             __levelModel.BrickAmount -= 1;
+            Data.score += 1;
         }
     }
 }

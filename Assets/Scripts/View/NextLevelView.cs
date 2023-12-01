@@ -16,7 +16,15 @@ public class NextLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Data.isAlive){
+          SceneManager.LoadScene("dead", LoadSceneMode.Single);
+          return;
+        }
         if (__levelModel.BrickAmount <= 0) {
+            if (__levelModel.NextLevel == 4){
+              SceneManager.LoadScene("dead", LoadSceneMode.Single);
+              return;
+            }
             string nameScene =  "level" + __levelModel.NextLevel.ToString();
             SceneManager.LoadScene(nameScene, LoadSceneMode.Single);
         }

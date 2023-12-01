@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallView : MonoBehaviour
 {
@@ -19,16 +20,22 @@ public class BallView : MonoBehaviour
             __controllerBall.PerfectAngleReflect(collision);
             BrickView __brickView = collision.gameObject.GetComponent<BrickView>();
             __brickView.PerformTakeDamage(1);
+            __controllerBall.playAudio();
         }
         else if (collision.gameObject.CompareTag("wall"))
         {
             __controllerBall.PerfectAngleReflect(collision);
+            __controllerBall.playAudio();
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            print("Player");
             Vector2 direction = __controllerBall.CalcBallAngleReflect(collision);
             __controllerBall.AngleChange(direction);
+            __controllerBall.playAudio();
+        }
+        else if (collision.gameObject.CompareTag("dead"))
+        {
+            Data.isAlive = false;
         }
     }
 }
