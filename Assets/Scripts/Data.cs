@@ -8,5 +8,4 @@ public class Data : MonoBehaviour
     public static int score = 0;
     public static bool isAlive = true;
 
-
 }
